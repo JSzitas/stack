@@ -1,0 +1,167 @@
+[
+    {
+        "file": "/home/jsco/Desktop/stack/src/greedy_stack.cpp",
+        "file_last_write": 1659218930.0,
+        "definitions": [
+            {
+                "usr": "c:@F@greedy_stacker#I#I#1C#&1I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "greedy_stacker(Eigen::VectorXf, Eigen::MatrixXf, const char, const int &)",
+                "file": "/home/jsco/Desktop/stack/src/greedy_stack.cpp",
+                "line": 15,
+                "column": 17
+            }
+        ]
+    },
+    {
+        "file": "/home/jsco/Desktop/stack/src/popping_stack.cpp",
+        "file_last_write": 1659902422.0,
+        "definitions": [
+            {
+                "usr": "c:@F@popping_stacker#I#I#1C#&1I#&1f#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "popping_stacker(Eigen::VectorXf, Eigen::MatrixXf, const char, const int &, const float &)",
+                "file": "/home/jsco/Desktop/stack/src/popping_stack.cpp",
+                "line": 11,
+                "column": 17
+            }
+        ]
+    },
+    {
+        "file": "/home/jsco/Desktop/stack/src/rng_module.h",
+        "file_last_write": 1659900662.0,
+        "definitions": [
+            {
+                "usr": "c:@F@sample_indices#1I#1I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "sample_indices(const int, const int)",
+                "file": "/home/jsco/Desktop/stack/src/rng_module.h",
+                "line": 9,
+                "column": 18
+            },
+            {
+                "usr": "c:@FT@>1#Tsample_from_sequence#t0.0#I#S0_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "sample_from_sequence(T, int)",
+                "file": "/home/jsco/Desktop/stack/src/rng_module.h",
+                "line": 26,
+                "column": 22
+            },
+            {
+                "usr": "c:@FT@>1#Tordered_sample_from_sequence#t0.0#I#S0_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "ordered_sample_from_sequence(T, int)",
+                "file": "/home/jsco/Desktop/stack/src/rng_module.h",
+                "line": 37,
+                "column": 22
+            }
+        ]
+    },
+    {
+        "file": "/home/jsco/Desktop/stack/src/utils.cpp",
+        "file_last_write": 1659899877.0,
+        "definitions": [
+            {
+                "usr": "c:@F@mse#&1I#S0_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "mse(const Eigen::VectorXf &, const Eigen::VectorXf &)",
+                "file": "/home/jsco/Desktop/stack/src/utils.cpp",
+                "line": 9,
+                "column": 15
+            },
+            {
+                "usr": "c:@F@rmse#&1I#S0_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rmse(const Eigen::VectorXf &, const Eigen::VectorXf &)",
+                "file": "/home/jsco/Desktop/stack/src/utils.cpp",
+                "line": 13,
+                "column": 15
+            },
+            {
+                "usr": "c:@F@mae#&1I#S0_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "mae(const Eigen::VectorXf &, const Eigen::VectorXf &)",
+                "file": "/home/jsco/Desktop/stack/src/utils.cpp",
+                "line": 17,
+                "column": 15
+            },
+            {
+                "usr": "c:@F@accuracy#&1I#S0_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "accuracy(const Eigen::VectorXf &, const Eigen::VectorXf &)",
+                "file": "/home/jsco/Desktop/stack/src/utils.cpp",
+                "line": 21,
+                "column": 15
+            },
+            {
+                "usr": "c:@F@eig_which_is_min#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "eig_which_is_min(Eigen::VectorXf)",
+                "file": "/home/jsco/Desktop/stack/src/utils.cpp",
+                "line": 33,
+                "column": 5
+            }
+        ]
+    },
+    {
+        "file": "/home/jsco/Desktop/stack/src/utils.h",
+        "file_last_write": 1659902575.0,
+        "definitions": [
+            {
+                "usr": "c:@FT@>1#Tmax_size#t0.0#S0_#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "max_size(T, T)",
+                "file": "/home/jsco/Desktop/stack/src/utils.h",
+                "line": 19,
+                "column": 24
+            },
+            {
+                "usr": "c:@FT@>1#Tmin_size#t0.0#S0_#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "min_size(T, T)",
+                "file": "/home/jsco/Desktop/stack/src/utils.h",
+                "line": 23,
+                "column": 24
+            },
+            {
+                "usr": "c:@FT@>2#T#Tintersect#t0.0#S0_#S0_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "intersect(T, T)",
+                "file": "/home/jsco/Desktop/stack/src/utils.h",
+                "line": 27,
+                "column": 34
+            },
+            {
+                "usr": "c:@FT@>3#T#T#Teigvec_indexed_replacement#&t0.0#t0.1#t0.2#v#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "eigvec_indexed_replacement(T &, I, R)",
+                "file": "/home/jsco/Desktop/stack/src/utils.h",
+                "line": 44,
+                "column": 46
+            },
+            {
+                "usr": "c:@FT@>1#Tsequence#t0.0#S0_#S0_#>@N@std@ST>2#T#T@vector2S0_>@N@std@ST>1#T@allocator1S0_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "sequence(T, T, T)",
+                "file": "/home/jsco/Desktop/stack/src/utils.h",
+                "line": 50,
+                "column": 38
+            }
+        ]
+    }
+]
