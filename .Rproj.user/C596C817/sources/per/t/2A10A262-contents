@@ -22,12 +22,12 @@ double accuracy( const Eigen::VectorXf & y,
                  const Eigen::VectorXf & y_hat) {
   Eigen::VectorXf resid = (y - y_hat).array().isNaN().select(0,y - y_hat).array();
   double acc;
-  for( int i = 0; i < y.size(); i++) {
+  for( int i = 0; i < resid.size(); i++) {
     // I am willing to accept criticism for hard-coded tolerances, but this should
     // be quite safe
     acc += abs(resid(i)) < 0.001;
   }
-  return acc/y.size();
+  return acc/resid.size();
 }
 
 int eig_which_is_min(Eigen::VectorXf x) {

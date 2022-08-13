@@ -6,6 +6,10 @@ using Eigen::MatrixXf;
 #include "rng_module.h"
 
 // [[Rcpp::depends(RcppEigen)]]
+#ifdef _OPENMP
+#include <omp.h>
+#endif
+// [[Rcpp::plugins(openmp)]]
 
 // [[Rcpp::export]]
 Eigen::VectorXf popping_stacker( Eigen::VectorXf y,
@@ -41,18 +45,18 @@ Eigen::VectorXf popping_stacker( Eigen::VectorXf y,
   std::vector<int> default_seq = sequence(0,int(Z.cols()), 1);
   std::vector<int> used_weights = default_seq;
   std::vector<int> new_used_weights;
-  float new_error, drop_rate = (1-popping_rate);
-  int popped_items = drop_rate * used_weights.size();
+  float new_error, drop_rate = (1-popping_rate), popped_items;
 
   for( int step =0; step < max_iter; step++) {
     // reset weights to 0
     eigvec_indexed_replacement( weights, default_seq, 0 );
     // pop some weights off and find a new intersecting set of weights
+    // TODO: check if this pops as many as it should
     popped_items = drop_rate * used_weights.size();
     // proposal = sample_from_sequence(used_weights, popped_items);
     new_used_weights = intersect<std::vector<int>, int>( used_weights,
-                                                         ordered_sample_from_sequence(used_weights, popped_items));
-    if( new_used_weights.size()  < 1) {
+                                                         ordered_sample_from_sequence(used_weights, static_cast<int>(popped_items)));
+    if( new_used_weights.size()  < 1 ) {
       break;
     }
     // only use nonzero weigths
@@ -69,3 +73,25 @@ Eigen::VectorXf popping_stacker( Eigen::VectorXf y,
   eigvec_indexed_replacement( weights, used_weights, float(1.0/used_weights.size()) );
   return weights;
 }
+
+// [[Rcpp::export]]
+Eigen::VectorXf averaged_popping_stacker( Eigen::VectorXf y,
+                                          Eigen::MatrixXf Z,
+                                          const char metric = 'S',
+                                          const int & max_iter = 100,
+                                          const float & popping_rate = 0.03,
+                                          const int & repetitions = 100) {
+
+  Eigen::MatrixXf result_mat( Z.cols(), repetitions );
+
+  #pragma omp parallel for
+  for( int j = 0; j < repetitions; j++ ) {
+    result_mat.col(j) = popping_stacker( y, Z, metric, max_iter, popping_rate);
+  }
+
+  Eigen::VectorXf result = result_mat.rowwise().mean();
+  return result;
+}
+
+
+
