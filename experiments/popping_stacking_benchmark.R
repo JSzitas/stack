@@ -60,6 +60,7 @@ speed_bench <- bench::press(
                  r_more_iter = popping_stacker_r(  y_, X_,  max_iter = 200),
                  cpp = popping_stacker( y_, X_),
                  cpp_more_iter = popping_stacker( y_, X_,  max_iter = 200),
+                 average_stacker = averaged_popping_stacker( y_, X_, max_iter = 100 ),
                  check = FALSE
     )
   }

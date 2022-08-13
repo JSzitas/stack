@@ -9,3 +9,7 @@ popping_stacker <- function(y, Z, metric = 'S', max_iter = 100L, popping_rate = 
     .Call(`_stack_popping_stacker`, y, Z, metric, max_iter, popping_rate)
 }
 
+averaged_popping_stacker <- function(y, Z, metric = 'S', max_iter = 100L, popping_rate = 0.03, repetitions = 100L) {
+    .Call(`_stack_averaged_popping_stacker`, y, Z, metric, max_iter, popping_rate, repetitions)
+}
+

@@ -1,5 +1,5 @@
-pkgload::load_all(compile = TRUE)
 remove(list=ls())
+pkgload::load_all(compile = TRUE)
 library(magrittr)
 
 exmpl <- readRDS("data/example_stacking_data.rds")
@@ -11,6 +11,10 @@ X[is.nan(X)] <- NA
 
 # X <- X[,sample(ncol(X), 20)]
 
+rmse <- function(true, predicted) {
+  sqrt(mean((true - predicted)^2, na.rm = TRUE))
+}
+tictoc::tic("duration:")
 validation <- replicate(n = 100,
           {
             # out of sample evaluation
@@ -20,16 +24,21 @@ validation <- replicate(n = 100,
             greedy <- greedy_stacker( y[train_id], X[train_id,])
             greedy_more <- greedy_stacker( y[train_id], X[train_id,],
                                            max_iter = 500 )
-            popped <- popping_stacker_r(y[train_id], X[train_id,])
-            popped_more <- popping_stacker_r(y[train_id], X[train_id,], 500)
+            popped <- popping_stacker(y[train_id], X[train_id,])
+            popped_more <- popping_stacker(y[train_id], X[train_id,], max_iter = 500)
+            popped_avg <- averaged_popping_stacker( y[train_id], X[train_id,] )
+            popped_avg_more <- averaged_popping_stacker( y[train_id], X[train_id,], max_iter = 500, repetitions = 200 )
 
             c( greedy = rmse( y[valid_id], c(X[valid_id,] %*% greedy)),
                greedy_more = rmse( y[valid_id], c(X[valid_id,] %*% greedy_more)),
-               popped_r = rmse( y[valid_id], c(X[valid_id,] %*% popped)),
-               popped_more_r = rmse( y[valid_id], c(X[valid_id,] %*% popped_more))
+               popped = rmse( y[valid_id], c(X[valid_id,] %*% popped)),
+               popped_more = rmse( y[valid_id], c(X[valid_id,] %*% popped_more)),
+               popped_averaged = rmse( y[valid_id], c(X[valid_id,] %*% popped_avg)),
+               popped_averaged_more = rmse( y[valid_id], c(X[valid_id,] %*% popped_avg_more)),
+               baseline = rmse( y[valid_id], c(X[valid_id,] %*% rep(1, ncol(X))/ncol(X)) )
             )
           })
-
+tictoc::toc()
 validation <- validation %>%
   t() %>%
   as.data.frame %>%
