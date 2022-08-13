@@ -14,10 +14,10 @@ std::vector<int> sample_indices( const int n,
     result[i] = i;
   }
 
-  std::random_device rd;
-  std::mt19937 twister(rd());
-
-  std::shuffle(result.begin(), result.end(), twister);
+  std::shuffle(result.begin(),
+               result.end(),
+               std::mt19937{std::random_device{}()}
+              );
   result.resize(size);
 
   return result;
@@ -36,8 +36,11 @@ template <class T> T sample_from_sequence( T seq, int size ) {
 
 template <class T> T ordered_sample_from_sequence( T seq, int size ) {
   T result;
-  std::sample(seq.begin(), seq.end(), std::back_inserter(result),
-              size, std::mt19937{std::random_device{}()});
+  std::sample(seq.begin(),
+              seq.end(),
+              std::back_inserter(result),
+              size, std::mt19937{std::random_device{}()}
+             );
   return result;
 }
 

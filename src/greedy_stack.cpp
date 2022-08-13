@@ -27,6 +27,9 @@ Eigen::VectorXf greedy_stacker( Eigen::VectorXf y,
   std::function<double(Eigen::VectorXf,Eigen::VectorXf)> metric_used;
 
   switch(metric) {
+    case 'R' :
+      metric_used = rmse;
+    break;
     case 'S' :
       metric_used = mse;
     break;

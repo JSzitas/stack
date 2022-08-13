@@ -16,7 +16,7 @@ double mae( const Eigen::VectorXf & y, const Eigen::VectorXf & y_hat );
 double accuracy( const Eigen::VectorXf & y, const Eigen::VectorXf & y_hat);
 int eig_which_is_min(Eigen::VectorXf x);
 
-template <class T> int max_size( T a, T b) {
+template <class T> int max_size( const T a, const T b) {
   return a.size() < b.size() ? b.size() : a.size();
 }
 
@@ -24,7 +24,7 @@ template <class T> int min_size( T a, T b) {
   return a.size() < b.size() ? a.size() : b.size();
 }
 
-template <class T, typename U> T intersect( T a, T b ) {
+template <class T, typename U> T intersect( const T a, const T b ) {
   if( a.empty() || b.empty() ) {
     return T();
   }
@@ -40,13 +40,13 @@ template <class T, typename U> T intersect( T a, T b ) {
   return result;
 }
 
-template <class T, class I, typename R> void eigvec_indexed_replacement( T &eigen_vec, I index_vec, R replacement ) {
+template <class T, class I, typename R> void eigvec_indexed_replacement( T &eigen_vec, const I index_vec, const R replacement ) {
   for(const auto& index: index_vec) {
     eigen_vec(index) = replacement;
   }
 }
 
-template <typename T> std::vector<T> sequence( T from, T to, T by ) {
+template <typename T> std::vector<T> sequence( const T from, const T to, const T by ) {
   int size = (to-from)/by;
   std::vector<T> result( size );
   result[0] = from;

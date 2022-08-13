@@ -40,10 +40,27 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// averaged_popping_stacker
+Eigen::VectorXf averaged_popping_stacker(Eigen::VectorXf y, Eigen::MatrixXf Z, const char metric, const int& max_iter, const float& popping_rate, const int& repetitions);
+RcppExport SEXP _stack_averaged_popping_stacker(SEXP ySEXP, SEXP ZSEXP, SEXP metricSEXP, SEXP max_iterSEXP, SEXP popping_rateSEXP, SEXP repetitionsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Eigen::VectorXf >::type y(ySEXP);
+    Rcpp::traits::input_parameter< Eigen::MatrixXf >::type Z(ZSEXP);
+    Rcpp::traits::input_parameter< const char >::type metric(metricSEXP);
+    Rcpp::traits::input_parameter< const int& >::type max_iter(max_iterSEXP);
+    Rcpp::traits::input_parameter< const float& >::type popping_rate(popping_rateSEXP);
+    Rcpp::traits::input_parameter< const int& >::type repetitions(repetitionsSEXP);
+    rcpp_result_gen = Rcpp::wrap(averaged_popping_stacker(y, Z, metric, max_iter, popping_rate, repetitions));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_stack_greedy_stacker", (DL_FUNC) &_stack_greedy_stacker, 4},
     {"_stack_popping_stacker", (DL_FUNC) &_stack_popping_stacker, 5},
+    {"_stack_averaged_popping_stacker", (DL_FUNC) &_stack_averaged_popping_stacker, 6},
     {NULL, NULL, 0}
 };
 
